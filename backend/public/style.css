@@ -7,6 +7,11 @@
   /* color: #423f3f; */
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 /* Styling Navbar */
 
 .navbar {
@@ -21,13 +26,14 @@
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   padding: 0 6rem 0 6rem;
+  z-index: 1000;
 }
 
-.logo{
+.logo {
   background-color: inherit;
 }
 
-.logo a{
+.logo a {
   background-color: inherit;
 }
 
@@ -86,7 +92,7 @@
   background-color: inherit;
 }
 
-.footer-logo{
+.footer-logo {
   text-align: center;
   height: 160px;
   width: 200px;
@@ -113,7 +119,7 @@
   background-color: inherit;
 }
 
-.footer-links{
+.footer-links {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -138,23 +144,24 @@
 
 .footer-links p {
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.8;
   color: #454242;
   /* color: #000000; */
   text-align: justify;
   word-wrap: break-word;
   margin-bottom: 60px;
   background-color: inherit;
+  font-weight: 500;
 }
 
-.footer-social-links{
+.footer-social-links {
   color: #5b5656;
-  margin-bottom:20px;
+  margin-bottom: 20px;
   font-size: 16px;
   background-color: inherit;
 }
 
-.footer-social-links div{
+.footer-social-links div {
   margin-top: 20px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -168,63 +175,62 @@
   background-color: inherit;
 }
 
-.footer-social-links div a{
+.footer-social-links div a {
   /* color: #7883ff; */
   color: #5b5656;
   transition: all 0.3s ease-in-out;
   background-color: inherit;
 }
 
-.footer-social-links div a i{
+.footer-social-links div a i {
   background-color: inherit;
 }
 
-.footer-social-links h3{
+.footer-social-links h3 {
   background-color: inherit;
 }
 
-.social-link-facebook:hover{
+.social-link-facebook:hover {
   transform: scale(1.2);
   color: #3b5998;
-  background-color: inherit; 
+  background-color: inherit;
 }
 
-.social-link-instagram:hover{
+.social-link-instagram:hover {
   transform: scale(1.2);
   color: #e1306c;
   background-color: inherit;
 }
 
-.social-link-twitter:hover{
+.social-link-twitter:hover {
   transform: scale(1.2);
   color: #000000;
   background-color: inherit;
 }
 
-.social-link-linkedin:hover{
+.social-link-linkedin:hover {
   transform: scale(1.2);
   color: #0077b5;
   background-color: inherit;
 }
 
-.social-link-github:hover{
+.social-link-github:hover {
   transform: scale(1.2);
   color: #333333;
   background-color: inherit;
-
 }
 
-.social-link-youtube:hover{
+.social-link-youtube:hover {
   transform: scale(1.2);
   color: #ff0000;
   background-color: inherit;
 }
 
-.footer-copyright{
+.footer-copyright {
   background-color: inherit;
 }
 
-.footer-copyright p{
+.footer-copyright p {
   background-color: inherit;
 }
 
@@ -266,18 +272,18 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 60px;
-  gap: 40px;
-  padding: 0 20px 0 20px;
+  gap: 20px;
+  padding: 10px;
 }
 
-.card {
-  height: 450px;
-  width: 380px;
+.note-card {
+  height: 500px;
+  width: 400px;
   /* background-color: #c5c9c5b4; */
   background-color: #fffefc;
   border-radius: 20px;
   overflow: hidden;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   display: flex;
   flex-direction: column;
   border: 2px solid #7883ff;
@@ -293,7 +299,7 @@
   color: #5b5656;
 }
 
-.card-header h2{
+.card-header h2 {
   font-weight: 500;
   background-color: inherit;
 }
@@ -309,13 +315,12 @@
 }
 
 .card-content {
-  margin-top: 10px;
   padding: 0 6px;
-  font-size: 15px;
+  font-size: 14px;
   text-align: justify;
   word-wrap: break-word;
   display: -webkit-box;
-  -webkit-line-clamp: 15;
+  -webkit-line-clamp: 17;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -324,31 +329,91 @@
 }
 
 .card-footer {
+  font-size: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row-reverse;
-  padding: 0 6px;
-  font-size: 12px;
+  text-align: center;
   color: #5b5656;
   font-weight: 500;
-  margin-top: auto;
   background-color: inherit;
 }
 
+/* Styling Popup Form */
+
 .form-popup-card {
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 520px;
-  width: 800px;
-  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+  max-width: 800px;
   z-index: 999;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 20px;
   margin-top: 40px;
-  background: rgba(109, 44, 221, 0.149);
-  backdrop-filter: blur(2px);
+  background: #fffefc;
+  border: 3px solid #7883ff;
+  /* border: 3px solid #3E9A70; */
+  box-shadow: 8px 12px 12px rgba(0, 0, 0, 0.263);
+  backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #454242;
+  display: none;
 }
 
+.popup-close-btn {
+  height: 20px;
+  width: 20px;
+  align-items: center;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: inherit;
+  color: #5b5656;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.priority-option input[type="radio"] {
+  display: none;
+}
+
+.priority-option span {
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-right: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #fcfbfc;
+  border: 2px solid #7883ff;
+  font-size: 14px;
+}
+
+.priority-option input[type="radio"]:checked + .priority-high {
+  background-color: rgb(249, 69, 69);
+  border-color: rgb(255, 0, 0);
+    color: #000000;
+}
+
+.priority-option input[type="radio"]:checked + .priority-medium {
+  background-color: rgb(255, 255, 0);
+  border-color: rgb(255, 255, 0);
+  color: #000000;
+}
+
+.priority-option input[type="radio"]:checked + .priority-low {
+  background-color: rgb(0, 255, 0);
+  border-color: rgb(0, 255, 0);
+  color: #000000;
+}
+
+.form-title{
+  background-color: inherit;
+}

@@ -5,11 +5,12 @@
         <button class="addNotes">+</button>
 
         <div class="notes-list">
-            <div class="card">
+            <div class="note-card">
                 <div class="card-header">
                     <h2 class="card-title">Note 1</h2>
                     <div class="test"></div>
                 </div>
+                <hr>
                 <p class="card-content">Success in life is not the result of luck alone, but the outcome of consistent
                     effort, learning, and resilience. Every small step taken daily shapes the larger journey ahead.
                     Failure is not the end; instead, it is a lesson that strengthens our foundation. People often
@@ -21,19 +22,126 @@
                     stronger and wiser. Small habits, when practiced consistently, create lasting change. Success is
                     never instant; it is the renges, opportunities, and lessons. Each day gives us a chance to grow
                     stronger and wiser. Small habits, when practiced consistently, create lasting change. Success is
+                    never instant; it is the r
+                    them wisely. Therefore, focus on progress instead of perfection, maintain clarity in goals, and stay
+                    committed, because persistence always outshines temporary motivation in the path of growth.Life is a
+                    journey filled with challallenges, opportunities, and lessons. Each day gives us a chance to grow
+                    stronger and wiser. Small habits, when practiced consistently, create lasting change. Success is
+                    never instant; it is the renges, opportunities, and lessons. Each day gives us a chance to grow
+                    stronger and wiser. Small habits, when practiced consistently, create lasting change. Success is
                     never instant; it is the r</p>
+
+                <hr>
 
                 <div class="card-footer">
                     <p>time</p>
                 </div>
 
             </div>
+
+            <div class="note-card"></div>
+            <div class="note-card"></div>
+            <div class="note-card"></div>
+            <div class="note-card"></div>
         </div>
 
         <div class="form-popup-card" id="popupForm">
             <button class="popup-close-btn">x</button>
-            <form action="" class="form-container">
-                
+            <h3 class="form-title mb-3 text-center">Add Note</h3>
+            <form action="/notes" method="POST" class="row-100 needs-validation" novalidate
+                enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="validationCustom01" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="validationCustom01" name="title"
+                        placeholder="Enter Title" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide a valid title.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="validationCustom02" class="form-label">Description</label>
+                    <textarea type="text" class="form-control" id="validationCustom02" name="description"
+                        placeholder="Enter Description" rows="7" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide a valid description.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="validationCustom03" class="form-label">Upload Image</label>
+                    <input type="file" class="form-control" id="validationCustom03" name="image" accept="image/*"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide a valid image.
+                    </div>
+                </div>
+
+                <div class="mb-3 d-flex gap-5">
+                    <div class="form-priority">
+                        <div>
+                            <label class="form-label" for="priority">Priority</label>
+                            <br>
+                        </div>
+                        <label class="priority-option mt-2">
+                            <input type="radio" name="priority" value="High" required>
+                            <span class="priority-high">High</span>
+                        </label>
+                        <label class="priority-option mt-2">
+                            <input type="radio" name="priority" value="Medium">
+                            <span class="priority-medium">Medium</span>
+                        </label>
+                        <label class="priority-option mt-2">
+                            <input type="radio" name="priority" value="Low">
+                            <span class="priority-low">Low</span>
+                        </label>
+
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid description.
+                        </div>
+                    </div>
+
+                    <div class="form-date">
+                        <label for="validationCustom04" class="form-label">Created At</label>
+                        <input type="date" class="form-control" id="validationCustom04" name="createAt" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid date.
+                        </div>
+                    </div>
+
+                    <div class="form-date">
+                        <label for="validationCustom05" class="form-label">Due date</label>
+                        <input type="date" class="form-control" id="validationCustom05" name="dueDate" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid date.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-4 mt-5 mb-3">
+                    <button type="clear" class="btn btn-danger  color-white">Clear</button>
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </div>
+
             </form>
         </div>
+
     </div>
