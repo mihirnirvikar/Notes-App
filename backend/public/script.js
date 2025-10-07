@@ -4,24 +4,27 @@ const popupCloseBtn = document.querySelector('.popup-close-btn');
 
 
 
+
 const dateInput = document.getElementById('validationCustom04');
 const today = new Date().toISOString().split('T')[0];
 dateInput.value = today;
 
 addNotes.addEventListener('click', () => {
-    popupForm.style.display = 'block';
-})
+  popupForm.classList.add('show');
+});
 
-popupCloseBtn.addEventListener('click', (e) => {
-    popupForm.style.display = 'none';
-})
+
+popupCloseBtn.addEventListener('click', () => {
+  popupForm.classList.remove('show');
+});
 
 document.addEventListener('click', (e) => {
   if (
-    popupForm.style.display === 'block' &&
+    popupForm.classList.contains('show') &&
     !popupForm.contains(e.target) &&
     !addNotes.contains(e.target)
   ) {
-    popupForm.style.display = 'none';
+    popupForm.classList.remove('show');
   }
 });
+

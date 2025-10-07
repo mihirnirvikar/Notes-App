@@ -9,10 +9,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('ejs', ejsMate);
 app.use(express.static('public'));
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 
 app.get("/notes", (req, res) => {
   res.render('home')
+})
+
+app.post('/notes', (req, res) => {
+  console.log(object);
 })
 
 

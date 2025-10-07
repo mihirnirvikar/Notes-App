@@ -12,6 +12,10 @@ p {
   padding: 0;
 }
 
+hr{
+  margin: 8px;
+}
+
 /* Styling Navbar */
 
 .navbar {
@@ -283,7 +287,7 @@ p {
   background-color: #fffefc;
   border-radius: 20px;
   overflow: hidden;
-  padding: 10px 10px 0 10px;
+  padding: 10px 10px 10px 10px;
   display: flex;
   flex-direction: column;
   border: 2px solid #7883ff;
@@ -315,6 +319,8 @@ p {
 }
 
 .card-content {
+  height: 400px;
+  width: 100%;
   padding: 0 6px;
   font-size: 14px;
   text-align: justify;
@@ -344,41 +350,50 @@ p {
 
 .form-popup-card {
   position: absolute;
-  top: 54%;
+  top: 56%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
+  transform: translate(-50%, -50%) scale(0.8); /* start small */
   min-height: 600px;
   max-width: 800px;
+  width: 100%;
   z-index: 999;
   border-radius: 10px;
-  padding: 10px 20px;
-  margin-top: 40px;
+  padding: 20px;
   background: #fffefc;
   border: 3px solid #7883ff;
-  /* border: 3px solid #3E9A70; */
   box-shadow: 8px 12px 12px rgba(0, 0, 0, 0.263);
-  backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
   color: #454242;
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out;
 }
 
+/* visible state */
+.form-popup-card.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1); /* scale up */
+}
+
+/* close button */
 .popup-close-btn {
-  height: 20px;
-  width: 20px;
-  align-items: center;
+  height: 24px;
+  width: 24px;
   border: none;
-  font-size: 24px;
+  font-size: 22px;
   cursor: pointer;
-  background-color: inherit;
+  background-color: transparent;
   color: #5b5656;
   position: absolute;
-  top: 8px;
+  top: 10px;
   right: 16px;
-  transition: all 0.3s ease-in-out;
+  transition: color 0.2s;
 }
+
+.popup-close-btn:hover {
+  color: #000;
+}
+
 
 .priority-option input[type="radio"] {
   display: none;
