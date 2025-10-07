@@ -7,31 +7,76 @@
         <div class="notes-list">
             <div class="note-card">
                 <div class="card-header">
-                    <h2 class="card-title">Note 1</h2>
+                    <h2 class="card-title">Success Mantra</h2>
                     <div class="test"></div>
                 </div>
                 <hr>
-                <p class="card-content">Success is the sum of small efforts, repeated day in and day out.</p>
+                <p class="card-content">🔹"Dream, dream, dream. Dreams transform into thoughts and thoughts result in
+                    action."
+
+                    🔹"You have to dream before your dreams can come true."
+
+                    🔹"Don’t take rest after your first victory because if you fail in second, more lips are waiting to
+                    say that your first victory was just luck."
+
+                    🔹"If you want to shine like a sun, first burn like a sun."
+
+                    🔹"All of us do not have equal talent. But, all of us have an equal opportunity to develop our
+                    talents."
+
+                    🔹"Man needs difficulties in life because they are necessary to enjoy success."
+
+                    🔹"Success is when your signature becomes an autograph."
+
+                    🔹"Excellence happens not by accident. It is a process."
+
+                    🔹"Thinking should become your capital asset, no matter whatever ups and downs you come across in
+                    your
+                    life."
+
+                    🔹"Look at the sky. We are not alone. The whole universe is friendly to us and conspires only to
+                    give
+                    the best to those who dream and work."</p>
 
                 <hr>
 
                 <div class="card-footer">
-                    <p>time</p>
+                    <p>
+                        <%= new Date().toDateString() %>
+                    </p>
                 </div>
-
             </div>
 
-            <div class="note-card"></div>
-            <div class="note-card"></div>
-            <div class="note-card"></div>
-            <div class="note-card"></div>
+            <% allNotes.forEach((note)=> { %>
+                <a href="/notes/<%= note._id %>/edit">
+                    <div class="note-card <%= note.priority.toLowerCase() %>">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <%= note.title %>
+                            </h2>
+                            <div class="test"></div>
+                        </div>
+                        <hr>
+                        <p class="card-content">
+                            <%- note.description.replace(/\n/g, '<br>' ) %>
+                        </p>
+
+                        <hr>
+
+                        <div class="card-footer">
+                            <p>
+                                <%= note.createdAt.toDateString() %>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <% }) %>
         </div>
 
         <div class="form-popup-card" id="popupForm">
             <button class="popup-close-btn">x</button>
             <h3 class="form-title mb-3 text-center">Add Note</h3>
-            <form action="/notes" method="POST" class="row-100 needs-validation" novalidate
-                >
+            <form action="/notes" method="POST" class="row-100 needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="validationCustom01" class="form-label">Title</label>
                     <input type="text" class="form-control" id="validationCustom01" name="title"
@@ -86,7 +131,6 @@
                             <input type="radio" name="priority" value="Low">
                             <span class="priority-low">Low</span>
                         </label>
-
                         <div class="valid-feedback">
                             Looks good!
                         </div>

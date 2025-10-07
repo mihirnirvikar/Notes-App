@@ -12,7 +12,7 @@ p {
   padding: 0;
 }
 
-hr{
+hr {
   margin: 8px;
 }
 
@@ -275,14 +275,16 @@ hr{
 .notes-list {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 60px;
+  
   gap: 20px;
   padding: 10px;
 }
 
 .note-card {
   height: 500px;
-  width: 400px;
+  min-width: 300px;
+  max-width: 400px;
+  
   /* background-color: #c5c9c5b4; */
   background-color: #fffefc;
   border-radius: 20px;
@@ -290,7 +292,20 @@ hr{
   padding: 10px 10px 10px 10px;
   display: flex;
   flex-direction: column;
-  border: 2px solid #7883ff;
+  border: 3px solid #7883ff;
+  margin-top: 80px;
+}
+
+.high {
+  border: 3px solid rgb(255, 0, 0) !important;
+}
+
+.medium {
+  border: 3px solid rgb(255, 255, 0);
+}
+
+.low {
+  border: 3px solid rgb(0, 255, 0);
 }
 
 .card-header {
@@ -348,12 +363,15 @@ hr{
 
 /* Styling Popup Form */
 
+/* border: 2px solid rgba(120, 131, 255, 0.3); /* faint border */
+/* box-shadow: 0 0 15px 0 rgba(120, 131, 255, 0.3); /* small-side soft glow */
+
 .form-popup-card {
   position: absolute;
   top: 56%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.8); /* start small */
-  min-height: 600px;
+  min-height: 500px;
   max-width: 800px;
   width: 100%;
   z-index: 999;
@@ -394,7 +412,6 @@ hr{
   color: #000;
 }
 
-
 .priority-option input[type="radio"] {
   display: none;
 }
@@ -414,7 +431,7 @@ hr{
 .priority-option input[type="radio"]:checked + .priority-high {
   background-color: rgb(249, 69, 69);
   border-color: rgb(255, 0, 0);
-    color: #000000;
+  color: #000000;
 }
 
 .priority-option input[type="radio"]:checked + .priority-medium {
@@ -429,6 +446,6 @@ hr{
   color: #000000;
 }
 
-.form-title{
+.form-title {
   background-color: inherit;
 }

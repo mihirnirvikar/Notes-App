@@ -1,0 +1,32 @@
+<!-- edit-note.ejs -->
+<form action="/notes/<%= note._id %>?_method=PUT" method="POST" onsubmit="submitNote()">
+  <input type="text" name="title" value="<%= note.title %>" required><br><br>
+
+  <div id="editor" style="height: 200px;"></div>
+
+  <input type="hidden" name="description" id="hiddenDescription">
+
+  <select name="priority">
+    <option value="High" <%= note.priority === 'High' ? 'selected' : '' %>>High</option>
+    <option value="Medium" <%= note.priority === 'Medium' ? 'selected' : '' %>>Medium</option>
+    <option value="Low" <%= note.priority === 'Low' ? 'selected' : '' %>>Low</option>
+  </select><br><br>
+
+  <input type="date" name="dueDate" value="<%= note.dueDate ? note.dueDate.toISOString().split('T')[0] : '' %>"><br><br>
+
+  <button type="submit">Update Note</button>
+</form>
+
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+  var quill = new Quill('#editor', { theme: 'snow' });
+
+  // Set editor content on page load
+  quill.root.innerHTML = `<%- note.description %>`;
+
+  function submitNote() {
+    document.getElementById('hiddenDescription').value = quill.root.innerHTML;
+  }
+</script>
