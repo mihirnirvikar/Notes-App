@@ -41,10 +41,6 @@ main()
   .then(() => console.log("Connected to DB"))
   .catch((err) => console.log(err));
 
-// ---------------------------------
-// Routes
-// ---------------------------------
-
 // GET all notes
 app.get("/notes", async (req, res) => {
   const allNotes = await Note.find({});
@@ -53,10 +49,7 @@ app.get("/notes", async (req, res) => {
 
 // POST new note
 app.post("/notes", async (req, res) => {
-  let { title, description, priority, dueDate } = req.body;
-  if (Array.isArray(description)) {
-    description = description.join("\n");
-  }
+  let { title, description, priority, dueDate } = req.body
   try {
     const newNote = new Note({
       title,

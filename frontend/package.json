@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.14",
     "html-react-parser": "^5.2.6",
+    "jodit": "^4.6.13",
     "jodit-react": "^5.2.26",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

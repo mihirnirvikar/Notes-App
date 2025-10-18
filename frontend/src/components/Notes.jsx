@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useParams } from "react-router";
 import JoditEditor from "jodit-react";
+import "jodit/es5/jodit.min.css";
+import "../index.css";
 
 const Notes = () => {
   const { id } = useParams();
@@ -42,7 +44,7 @@ const Notes = () => {
         url: "http://localhost:3000/upload",
         format: "json",
         method: "POST",
-        filesVariableName: "files[0]", // must be files[0]
+        filesVariableName: "files[0]",
         headers: {},
         isSuccess: (resp) => resp.success === true,
         getMessage: (resp) => resp.message || "Upload failed",
@@ -87,9 +89,49 @@ const Notes = () => {
         "print",
         "about",
       ],
-      extraButtons: [],
       shortcut: true,
       placeholder: "Write your notes here...",
+
+      // 👇👇👇 NEW: Custom list styles for Jodit editor content
+      style: `
+      ul {
+        list-style-type: disc;
+        padding-left: 1.5em;
+      }
+
+      ul[style*="square"], ul.custom-square {
+        list-style-type: square;
+      }
+
+      ul[style*="circle"] {
+        list-style-type: circle;
+      }
+
+      ol {
+        list-style-type: decimal;
+        padding-left: 1.5em;
+      }
+
+      ol[style*="lower-alpha"], ol.alpha {
+        list-style-type: lower-alpha;
+      }
+
+      ol[style*="upper-alpha"], ol.upper-alpha {
+        list-style-type: upper-alpha;
+      }
+
+      ol[style*="lower-roman"], ol.roman {
+        list-style-type: lower-roman;
+      }
+
+      ol[style*="upper-roman"], ol.upper-roman {
+        list-style-type: upper-roman;
+      }
+
+      li {
+        margin-bottom: 0.1em;
+      }
+    `,
     }),
     []
   );
@@ -202,163 +244,203 @@ const Notes = () => {
   if (!data) return <div className="p-8 text-center">Loading...</div>;
 
   return (
-    <div className="min-h-[calc(100vh-64px)] mt-[124px] px-8 md:px-36 py-8 bg-white">
-      <div className="max-w-4xl mx-auto">
-        {/* Header with title & buttons */}
-        <div className="flex justify-between items-center mb-6 border-b pb-3">
-          {isEditing ? (
-            <input
-              type="text"
-              name="title"
-              value={editedNote.title}
-              onChange={handleChange}
-              className="text-4xl font-semibold text-gray-800 border border-gray-300 rounded px-4 py-2 w-full mr-6"
-              placeholder="Enter title"
-              autoFocus
-              required
-            />
-          ) : (
-            <h1 className="text-4xl font-semibold text-gray-800">
-              {editedNote.title}
-            </h1>
-          )}
+    <>
+      {/* Added styles to support list styles inside notes */}
+      <style>{`
+        .note-content ul,
+        .note-content ol {
+          padding-left: 1.5rem; /* ensure list markers show */
+          list-style-position: outside;
+          margin-bottom: 1rem;
+        }
 
-          <div className="flex space-x-3">
-            {isEditing && (
-              <>
-                <button
-                  onClick={resetEdits}
-                  className="px-4 py-2 bg-yellow-400 text-gray-800 rounded hover:bg-yellow-500 transition text-sm font-medium shadow"
-                  title="Reset Edits"
-                >
-                  Reset
-                </button>
-                <button
-                  onClick={cancelEdit}
-                  className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition text-sm font-medium shadow"
-                  title="Cancel Editing"
-                >
-                  Back
-                </button>
-              </>
+        /* For unordered list types */
+        .note-content ul {
+          list-style-type: disc; /* default */
+        }
+        .note-content ul[style*="square"] {
+          list-style-type: square !important;
+        }
+        .note-content ul[style*="circle"] {
+          list-style-type: circle !important;
+        }
+
+        /* For ordered list types */
+        .note-content ol {
+          list-style-type: decimal; /* default */
+        }
+        .note-content ol[style*="upper-alpha"] {
+          list-style-type: upper-alpha !important;
+        }
+        .note-content ol[style*="lower-alpha"] {
+          list-style-type: lower-alpha !important;
+        }
+        .note-content ol[style*="upper-roman"] {
+          list-style-type: upper-roman !important;
+        }
+        .note-content ol[style*="lower-roman"] {
+          list-style-type: lower-roman !important;
+        }
+      `}</style>
+
+      <div className="min-h-[calc(100vh-64px)] mt-[124px] px-8 md:px-36 py-8 bg-white">
+        <div className="max-w-4xl mx-auto">
+          {/* Header with title & buttons */}
+          <div className="flex justify-between items-center mb-6 border-b pb-3">
+            {isEditing ? (
+              <input
+                type="text"
+                name="title"
+                value={editedNote.title}
+                onChange={handleChange}
+                className="text-4xl font-semibold text-gray-800 border border-gray-300 rounded px-4 py-2 w-full mr-6"
+                placeholder="Enter title"
+                autoFocus
+                required
+              />
+            ) : (
+              <h1 className="text-4xl font-semibold text-gray-800">
+                {editedNote.title}
+              </h1>
             )}
 
-            <button
-              onClick={toggleEdit}
-              className={`px-4 py-2 rounded text-sm font-medium shadow
+            <div className="flex space-x-3">
+              {isEditing && (
+                <>
+                  <button
+                    onClick={resetEdits}
+                    className="px-4 py-2 bg-yellow-400 text-gray-800 rounded hover:bg-yellow-500 transition text-sm font-medium shadow"
+                    title="Reset Edits"
+                  >
+                    Reset
+                  </button>
+                  <button
+                    onClick={cancelEdit}
+                    className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-900 transition text-sm font-medium shadow"
+                    title="Cancel Editing"
+                  >
+                    Back
+                  </button>
+                </>
+              )}
+
+              <button
+                onClick={toggleEdit}
+                className={`px-4 py-2 rounded text-sm font-medium shadow
                 ${
                   isEditing
                     ? "bg-green-600 hover:bg-green-700 text-white"
                     : "bg-blue-600 hover:bg-blue-700 text-white"
                 }`}
-              title={isEditing ? "Save Note" : "Edit Note"}
-            >
-              {isEditing ? "Save" : "Edit"}
-            </button>
+                title={isEditing ? "Save Note" : "Edit Note"}
+              >
+                {isEditing ? "Save" : "Edit"}
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Description */}
-        <div className="mb-6">
-          {isEditing ? (
-            <JoditEditor
-              ref={editor}
-              value={editedNote.description}
-              config={config}
-              onBlur={handleEditorBlur} // Only onBlur update state
-              // Removed onChange to prevent cursor jumping
-            />
-          ) : (
-            <div
-              className="whitespace-pre-wrap p-6 bg-gray-100 rounded-lg shadow-sm text-gray-700"
-              dangerouslySetInnerHTML={{ __html: editedNote.description }}
-            />
-          )}
-        </div>
+          {/* Description */}
+          <div className="mb-6">
+            {isEditing ? (
+              <JoditEditor
+                ref={editor}
+                value={editedNote.description}
+                config={config}
+                onBlur={handleEditorBlur} // Only onBlur update state
+                // Removed onChange to prevent cursor jumping
+              />
+            ) : (
+              <div
+                className="note-content p-6 bg-gray-100 rounded-lg shadow-sm text-gray-700"
+                dangerouslySetInnerHTML={{ __html: editedNote.description }}
+              />
+            )}
+          </div>
 
-        {/* Priority and Due Date */}
-        {isEditing && (
-          <div className="mb-6 flex flex-wrap justify-between items-center space-x-8">
-            <div className="flex items-center">
-              <span className="font-semibold text-gray-700 mr-4">
-                Priority:
-              </span>
-              <div className="flex space-x-4">
-                {["High", "Medium", "Low"].map((level) => {
-                  const isChecked = editedNote.priority === level;
-                  let bgColor = "bg-gray-100 border-gray-300 text-gray-800";
-                  if (isChecked) {
-                    if (level === "High")
-                      bgColor = "bg-red-500 border-red-600 text-black";
-                    else if (level === "Medium")
-                      bgColor = "bg-yellow-300 border-yellow-400 text-black";
-                    else if (level === "Low")
-                      bgColor = "bg-green-400 border-green-500 text-black";
-                  }
+          {/* Priority and Due Date */}
+          {isEditing && (
+            <div className="mb-6 flex flex-wrap justify-between items-center space-x-8">
+              <div className="flex items-center">
+                <span className="font-semibold text-gray-700 mr-4">
+                  Priority:
+                </span>
+                <div className="flex space-x-4">
+                  {["High", "Medium", "Low"].map((level) => {
+                    const isChecked = editedNote.priority === level;
+                    let bgColor = "bg-gray-100 border-gray-300 text-gray-800";
+                    if (isChecked) {
+                      if (level === "High")
+                        bgColor = "bg-red-500 border-red-600 text-black";
+                      else if (level === "Medium")
+                        bgColor = "bg-yellow-300 border-yellow-400 text-black";
+                      else if (level === "Low")
+                        bgColor = "bg-green-400 border-green-500 text-black";
+                    }
 
-                  return (
-                    <label
-                      key={level}
-                      className={`cursor-pointer rounded-full border-2 px-4 py-1 select-none transition-colors duration-300 flex items-center justify-center ${bgColor}`}
-                    >
-                      <input
-                        type="radio"
-                        name="priority"
-                        value={level}
-                        checked={isChecked}
-                        onChange={handleChange}
-                        className="hidden"
-                        required
-                      />
-                      <span className="text-sm font-medium">{level}</span>
-                    </label>
-                  );
-                })}
+                    return (
+                      <label
+                        key={level}
+                        className={`cursor-pointer rounded-full border-2 px-4 py-1 select-none transition-colors duration-300 flex items-center justify-center ${bgColor}`}
+                      >
+                        <input
+                          type="radio"
+                          name="priority"
+                          value={level}
+                          checked={isChecked}
+                          onChange={handleChange}
+                          className="hidden"
+                          required
+                        />
+                        <span className="text-sm font-medium">{level}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="flex items-center">
+                <span className="font-semibold text-gray-700 mr-4">
+                  Due Date:
+                </span>
+                <input
+                  type="date"
+                  name="dueDate"
+                  value={editedNote.dueDate}
+                  onChange={handleChange}
+                  className="border border-gray-300 rounded px-4 py-1 text-gray-700 cursor-pointer"
+                  style={{ minWidth: "160px" }}
+                  min={new Date().toISOString().split("T")[0]} // disable past dates
+                />
               </div>
             </div>
+          )}
 
-            <div className="flex items-center">
-              <span className="font-semibold text-gray-700 mr-4">
-                Due Date:
-              </span>
-              <input
-                type="date"
-                name="dueDate"
-                value={editedNote.dueDate}
-                onChange={handleChange}
-                className="border border-gray-300 rounded px-4 py-1 text-gray-700 cursor-pointer"
-                style={{ minWidth: "160px" }}
-                min={new Date().toISOString().split("T")[0]} // disable past dates
-              />
-            </div>
-          </div>
-        )}
+          {/* View mode: Priority, Created At and Due Date */}
+          {!isEditing && (
+            <div className="flex items-center gap-8 text-sm justify-between text-gray-600 mb-6">
+              <div className="flex items-center space-x-2">
+                <span className="font-semibold">Priority:</span>
+                <span>{editedNote.priority}</span>
+              </div>
 
-        {/* View mode: Priority, Created At and Due Date */}
-        {!isEditing && (
-          <div className="flex items-center gap-8 text-sm justify-between text-gray-600 mb-6">
-            <div className="flex items-center space-x-2">
-              <span className="font-semibold">Priority:</span>
-              <span>{editedNote.priority}</span>
-            </div>
+              <div className="flex items-center space-x-2">
+                <span className="font-semibold">Due Date:</span>
+                <span>
+                  {editedNote.dueDate
+                    ? new Date(editedNote.dueDate).toLocaleDateString()
+                    : "N/A"}
+                </span>
+              </div>
 
-            <div className="flex items-center space-x-2">
-              <span className="font-semibold">Due Date:</span>
-              <span>
-                {editedNote.dueDate
-                  ? new Date(editedNote.dueDate).toLocaleDateString()
-                  : "N/A"}
-              </span>
+              <div className="flex items-center space-x-2">
+                <span className="font-semibold">Created:</span>
+                <span>{new Date(data?.createdAt).toLocaleString()}</span>
+              </div>
             </div>
-
-            <div className="flex items-center space-x-2">
-              <span className="font-semibold">Created:</span>
-              <span>{new Date(data?.createdAt).toLocaleString()}</span>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

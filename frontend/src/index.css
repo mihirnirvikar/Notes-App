@@ -33,3 +33,21 @@
   border-color: rgb(0, 255, 0);
   color: #000000;
 }
+
+div[style] ul {
+  list-style-type: disc !important;
+  padding-left: 20px !important;
+  margin-bottom: 1rem;
+}
+
+div[style] ol {
+  list-style-type: decimal !important;
+  padding-left: 20px !important;
+  margin-bottom: 1rem;
+}
+
+div[style] li {
+  margin-bottom: 0.25rem !important;
+}
+
+

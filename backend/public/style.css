@@ -247,7 +247,8 @@ hr {
 .title {
   color: #423f3f;
   margin-left: 10px;
-  margin-top: 80px;
+  margin-top: 100px;
+  margin-bottom: 40px;
 }
 
 .addNotes {
@@ -434,11 +435,13 @@ hr {
   text-overflow: ellipsis;
   background-color: inherit;
   color: #454242;
+  cursor: text;
 }
 
 .card-content a{
   color: #454242;
   text-decoration: none;
+  cursor: pointer;
 }
 
 /* FOOTER */
@@ -541,6 +544,10 @@ hr {
   background-color: rgb(0, 255, 0);
   border-color: rgb(0, 255, 0);
   color: #000000;
+}
+
+.due-date{
+  cursor: pointer;
 }
 
 .form-title {
