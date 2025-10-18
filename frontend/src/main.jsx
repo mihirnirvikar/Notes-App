@@ -10,20 +10,48 @@ import Error from "./components/Error.jsx";
 
 let router = createBrowserRouter([
   {
-    path: "/notes/:id",
+    path: "/notes",
     element: <App />,
     errorElement: <Error />,
     children: [
+      {
+        path: "/notes",
+        element: <Error />,
+      },
       {
         path: "/notes/:id",
         element: <Notes />,
       },
       {
         path: "/notes/:id/edit",
-        element : <NotesEdit />,
+        element: <NotesEdit />,
       },
+      {
+        path: "/notes/about",
+        element: <h1>About</h1>,
+      },
+      {
+        path: "/notes/imp",
+        element: <h1>Imp Notes</h1>,
+      },
+      {
+        path: "/notes/login",
+        element: <h1>Login</h1>,
+      },
+      {
+        path: "/notes/signup",
+        element: <h1>Signup</h1>,
+      },
+      {
+        path: "/notes/logout",
+        element: <h1>Logout</h1>,
+      },
+      {
+        
+      }
     ],
   },
+  
 ]);
 
 createRoot(document.getElementById("root")).render(

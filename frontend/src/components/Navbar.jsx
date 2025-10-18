@@ -13,12 +13,12 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="nav-links">
-          <Link to="/notes">Home</Link>
-          <Link to="/notes">About</Link>
-          <Link to="/notes">Imp Notes</Link>
-          <Link to="/notes">Login</Link>
-          <Link to="/notes">Signup</Link>
-          <Link to="/notes">Logout</Link>
+          <Link to="http://localhost:3000/notes">Home</Link>
+          <Link to="/notes/about">About</Link>
+          <Link to="/notes/imp">Imp Notes</Link>
+          <Link to="/notes/login">Login</Link>
+          <Link to="/notes/signup">Signup</Link>
+          <Link to="/notes/logout">Logout</Link>
         </div>
       </div>
     </>
