@@ -4,7 +4,7 @@
         <h1 class="title">Home Page</h1>
         <button class="addNotes">+</button>
 
-        <div class="notes-list">
+        <!-- <div class="notes-list">
             <div class="note-card">
                 <div class="card-header">
                     <h2 class="card-title">Success Mantra</h2>
@@ -57,9 +57,11 @@
                             <div class="test"></div>
                         </div>
                         <hr>
-                        <p class="card-content">
-                            <%- note.description.replace(/\n/g, '<br>' ) %>
-                        </p>
+                        <div class="card-content-div">
+                            <p class="card-content">
+                                <%- note.description.split('\n') %>
+                            </p>
+                        </div>
 
                         <hr>
 
@@ -71,7 +73,78 @@
                     </div>
                 </a>
                 <% }) %>
+        </div> -->
+
+        <div class="notes-list">
+
+            <!-- Static Card -->
+            <div class="note-card">
+                <div class="card-header">
+                    <h2 class="card-title">Success Mantra</h2>
+                    <div class="test"></div>
+                </div>
+
+                <div class="card-content">
+                    🔹"Dream, dream, dream. Dreams transform into thoughts and thoughts result in action."
+                    <br>
+                    🔹"You have to dream before your dreams can come true."
+                    <br>
+                    🔹"Don’t take rest after your first victory because if you fail in second, more lips are waiting to
+                    say that your first victory was just luck."
+                    <br>
+                    🔹"If you want to shine like a sun, first burn like a sun."
+                    <br>
+                    🔹"All of us do not have equal talent. But, all of us have an equal opportunity to develop our
+                    talents."
+                    <br>
+                    🔹"Man needs difficulties in life because they are necessary to enjoy success."
+                    <br>
+                    🔹"Success is when your signature becomes an autograph."
+                    <br>
+                    🔹"Excellence happens not by accident. It is a process."
+                    <br>
+                    🔹"Thinking should become your capital asset, no matter whatever ups and downs you come across in
+                    your
+                    life."
+                    <br>
+                    🔹"Look at the sky. We are not alone. The whole universe is friendly to us and conspires only to
+                    give the best to those who dream and work."
+                </div>
+
+                <div class="card-footer">
+                    <p>
+                        <%= new Date().toDateString() %>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Dynamic Cards -->
+            <% allNotes.forEach((note)=> { %>
+                <div class="note-card <%= note.priority.toLowerCase() %>" style="position: relative;">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <%= note.title %>
+                        </h2>
+                        <div class="test three-dots w-8 h-8 "></div>
+                    </div>
+                    <div class="card-content">
+                        <a href="http://localhost:5173/notes/<%= note._id %>" >
+                            <%- note.description.replace(/\r?\n/g, '<br>' ) %>
+                        </a>
+                    </div>
+
+                    <div class="card-footer">
+                        <p>
+                            <%= note.createdAt.toDateString() %>
+                        </p>
+                    </div>
+                </div>
+                <% }) %>
+
+
         </div>
+
+
 
         <div class="form-popup-card" id="popupForm">
             <button class="popup-close-btn">x</button>
@@ -93,6 +166,18 @@
                     <label for="validationCustom02" class="form-label">Description</label>
                     <textarea type="text" class="form-control" id="validationCustom02" name="description"
                         placeholder="Enter Description" rows="5" required>Description</textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide a valid description.
+                    </div>
+                </div>
+
+                <div class="mb-3 d-none">
+                    <label for="validationCustom02" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="description"
+                        placeholder="Enter Description" rows="5">
                     <div class="valid-feedback">
                         Looks good!
                     </div>

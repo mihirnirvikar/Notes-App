@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+.priority-option input[type="radio"] {
+  display: none;
+}
+
+.priority-option label {
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-right: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #fcfbfc;
+  border: 2px solid #7883ff;
+  font-size: 14px;
+}
+
+.priority-option input[type="radio"]:checked + label.priority-high {
+  background-color: rgb(249, 69, 69);
+  border-color: rgb(255, 0, 0);
+  color: #000000;
+}
+
+.priority-option input[type="radio"]:checked + label.priority-medium {
+  background-color: rgb(255, 255, 0);
+  border-color: rgb(255, 255, 0);
+  color: #000000;
+}
+
+.priority-option input[type="radio"]:checked + label.priority-low {
+  background-color: rgb(0, 255, 0);
+  border-color: rgb(0, 255, 0);
+  color: #000000;
+}

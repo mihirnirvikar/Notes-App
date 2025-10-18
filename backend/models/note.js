@@ -13,7 +13,8 @@ const noteSchema = new Schema(
     },
     priority: {
       type: String,
-      required: true,
+      enum: ["Low", "Medium", "High"],
+      default: "Low",
     },
     dueDate: {
       type: Date,
